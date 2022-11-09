@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'addresses/index'
-  get 'addresses/create'
-  get 'users/index'
-  get 'users/create'
+  # get 'addresses/index'
+  # get 'addresses/create'
+  # get 'users/index'
+  # get 'users/create'
 
   Rails.application.routes.draw do 
     scope '/api/v1/' do 

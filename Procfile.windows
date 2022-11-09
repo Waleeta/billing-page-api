@@ -1,2 +1,2 @@
 api: bundle exec rails server –p 3000
-web: yarn --cwd billing-form-api start
+web: yarn --cwd billing-front-end-app start
