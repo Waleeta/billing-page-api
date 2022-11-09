@@ -1,0 +1,10 @@
+.formContainer {
+    height: 100%;
+    width: 100%;
+}
+
+.formElements {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}

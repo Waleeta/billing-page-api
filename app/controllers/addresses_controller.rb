@@ -11,14 +11,10 @@ class AddressesController < ApplicationController
     render json: address
   end
 
-
   private 
+  
   def address_params 
     params.require(:address).permit(
-      :first_name, 
-      :last_name, 
-      :email, 
-      :phone, 
       :street, 
       :city, 
       :state, 

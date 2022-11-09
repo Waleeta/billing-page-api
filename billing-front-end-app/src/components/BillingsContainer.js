@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import BillingForm from './BillingForm'
 
+import './BillingsContainer.css'
+
 class BillingsContainer extends Component {
     render() {
         return (
@@ -11,8 +13,6 @@ class BillingsContainer extends Component {
             </div>
         )
     }
-
-
 }
 
 export default BillingsContainer;
