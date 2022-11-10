@@ -1,64 +1,23 @@
-import { useState } from "react";
-import './BillingForm.css'
+import { Formik, Field, Form } from "formik";
 
-import { getBillingAddresses } from '.././api/getBillingAddresses'
 import { createBillingAddress } from '.././api/createBillingAddress'
 
+import './BillingForm.css'
+
 const BillingForm = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [street, setStreet] = useState('')
-    const [city, setCity] = useState('')
-    const [usState, setUsState] = useState('')
-    const [zip, setZip] = useState('')
-    const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
 
+    const handleSubmit = (values) => {
 
-    const handleFirstNameChange = (e) => {
-        setFirstName(e.target.value)
-    }
-
-    const handleLastNameChange = (e) => {
-        setLastName(e.target.value)
-    }
-
-    const handleCityChange = (e) => {
-        setCity(e.target.value)
-    }
-
-    const handleUsStateChange = (e) => {
-        setUsState(e.target.value)
-    }
-
-    const handleZipChange = (e) => {
-        setZip(e.target.value)
-    }
-
-    const handlePhoneChange = (e) => {
-        setPhone(e.target.value)
-    }
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value)
-    }
-
-    const handleStreetChange = (e) => {
-        setStreet(e.target.value)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
         const payload = {
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            phone: phone,
+            first_name: values.firstname,
+            last_name: values.lastname,
+            email: values.email,
+            phone: values.phone,
             address_attributes: {
-                street: street,
-                zip: zip,
-                city: city,
-                state: usState,
+                street: values.street,
+                zip: values.zip,
+                city: values.city,
+                state: values.usstate,
             }
         }
         const { data, error } = createBillingAddress(payload)
@@ -67,47 +26,46 @@ const BillingForm = () => {
         } else {
             return error
         }
-
     }
 
     return (
-        <div className="formContainer">
-            <form className='formElements' onSubmit={handleSubmit}>
-                <label>
-                    First Name:
-                    <input type="text" name="name" onChange={handleFirstNameChange} />
-                </label>
-                <label>
-                    Last Name:
-                    <input type="text" name="name" onChange={handleLastNameChange} />
-                </label>
-                <label>
-                    Street:
-                    <input type="text" name="name" onChange={handleStreetChange} />
-                </label>
-                <label>
-                    City:
-                    <input type="text" name="name" onChange={handleCityChange} />
-                </label>
-                <label>
-                    State:
-                    <input type="text" name="name" onChange={handleUsStateChange} />
-                </label>
-                <label>
-                    Zip:
-                    <input type="text" name="name" onChange={handleZipChange} />
-                </label>
-                <label>
-                    Email:
-                    <input type="text" name="name" onChange={handleEmailChange} />
-                </label>
-                <label>
-                    Phone:
-                    <input type="text" name="name" onChange={handlePhoneChange} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
+        <div>
+            <Formik initialValues={{
+                firstname: "", lastname: "", street: "", city: "", usstate: "", zip: "", phone: "", email: ""
+            }} onSubmit={(values, { resetForm }) => {
+                handleSubmit(values);
+                resetForm({ values: { firstname: '', lastname: '', email: '', phone: '', zip: '', usstate: '', city: '', street: '' } });
+            }} >
+                {() => (
+                    <Form className="formContainer">
+                        <label>First Name</label>
+                        <Field name="firstname" label="First Name" />
+                        <label>Last Name</label>
+                        <Field name="lastname" type="text" />
+                        <label>Street Address</label>
+                        <Field name="street" type="text" />
+                        <label>City</label>
+                        <Field name="city" type="text" />
+                        <label>State</label>
+                        <Field as="select" multiple={false} name="usstate">
+                            <option value="IL">IL</option>
+                            <option value="CA">CA</option>
+                            <option value="MI">MI</option>
+                            <option value="MI">WI</option>
+                            <option value="MI">NY</option>
+                        </Field>
+                        <label>Zip Code</label>
+                        <Field name="zip" type="text" />
+                        <label>Email</label>
+                        <Field name="email" label="Email" />
+
+                        <label>Phone</label>
+                        <Field name="phone" type="text" />
+                        <button className='button' type="submit">Submit</button>
+                    </Form>
+                )}
+            </Formik>
+        </div >
     )
 }
 
