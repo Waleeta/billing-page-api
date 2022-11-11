@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 
+import Success from './Success'
 import { createBillingAddress } from '.././api/createBillingAddress'
 
 import './BillingForm.css'
 
 const BillingForm = () => {
+    const [success, setSuccess] = useState(false)
+    const [firstName, setFirstName] = useState(false)
 
     const BillingFormSchema = Yup.object().shape({
         firstName: Yup.string()
@@ -25,7 +29,8 @@ const BillingForm = () => {
             .max(10, 'Must be 10 digits')
     });
 
-    const handleSubmit = (values) => {
+    const handleSubmit = async (values) => {
+        values.firstName && setFirstName(values.firstName)
         const payload = {
             first_name: values.firstName,
             last_name: values.lastName,
@@ -38,9 +43,14 @@ const BillingForm = () => {
                 state: values.usState,
             }
         }
-        const { data, error } = createBillingAddress(payload)
-        if (!error) {
-            return data
+        const { data, error } = await createBillingAddress(payload)
+        debugger;
+        if (data.status === 200) {
+            setSuccess(true)
+            setTimeout(() => {
+                setSuccess(false)
+            }, 10000)
+            return
         } else {
             return error
         }
@@ -106,6 +116,7 @@ const BillingForm = () => {
                     </Form>
                 )}
             </Formik>
+            {success && <Success firstName={firstName} />}
         </div >
     )
 }

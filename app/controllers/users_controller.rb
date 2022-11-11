@@ -7,8 +7,12 @@ class UsersController < ApplicationController
 
   def create
     user = User.create(users_params)
-    
-    render json: user
+
+    if user.valid?  
+      render json: {}, status: 200
+    else
+      render json: { error: "Sorry, something went wrong" }, status: 422
+    end
   end
 
   private 

@@ -1,13 +1,16 @@
 import axios from 'axios'
 
 export const createBillingAddress = async (payload) => {
-    console.log("payload in api call", payload)
-    debugger;
     const URL = "/api/v1/users"
     return await axios
-        .post(URL, { user: payload })
-        .then((res) => { return { data: res } })
-        .catch((error) => console.log(error));
+        .post(URL, { user: payload },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        .then((response) => { return { data: response } })
+        .catch((error) => console.log("ERROR IN API", error.response.error));
 }
 
 
