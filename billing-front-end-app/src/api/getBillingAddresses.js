@@ -1,11 +1,15 @@
 import axios from 'axios'
 
-export const getBillingAddresses = () => {
+export const getBillingAddresses = async () => {
     const URL = "/api/v1/addresses"
-    return axios(URL, {
-        method: "GET",
-        headers: { 'content-type': 'application/json' },
-    })
-        .then(response => response.data)
+
+    return await axios
+        .get(URL,
+            {
+                headers: {
+                    'content-type': 'application/json'
+                }
+            })
+        .then((response) => { return response.data })
         .catch(error => console.log("ERROR in GET: ", error))
 }

@@ -10,7 +10,7 @@ export const createBillingAddress = async (payload) => {
                 }
             })
         .then((response) => { return { data: response } })
-        .catch((error) => console.log("ERROR IN API", error.response.error));
+        .catch((error) => console.log("ERROR IN CREATE", error));
 }
 
 

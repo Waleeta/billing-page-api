@@ -1,14 +1,19 @@
 class AddressesController < ApplicationController
+  
   def index
-    @addresses = Address.all.order("created_at DESC")
+    @addresses = Address.all
     
-    render json: @addresses
-  end
+    users_with_addresses = []
+    user = {}
 
-  def create
-    @address = Address.create(address_params)
+    @addresses.each do |address|
+      if address.user
+        user_name = address.user.first_name + ' ' + address.user.last_name
+        users_with_addresses << user[address.user.id] = {name: user_name, address: address}
+      end
+    end
 
-    render json: @address
+    render json: users_with_addresses, status: 200
   end
 
   private 

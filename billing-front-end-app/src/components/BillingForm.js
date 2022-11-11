@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 
 import Success from './Success'
+
 import { createBillingAddress } from '.././api/createBillingAddress'
 
 import './BillingForm.css'
@@ -10,6 +11,7 @@ import './BillingForm.css'
 const BillingForm = () => {
     const [success, setSuccess] = useState(false)
     const [firstName, setFirstName] = useState(false)
+
 
     const BillingFormSchema = Yup.object().shape({
         firstName: Yup.string()
@@ -21,7 +23,7 @@ const BillingForm = () => {
             .required('Required'),
         city: Yup.string()
             .required('Required'),
-        zip: Yup.number()
+        zip: Yup.string()
             .min(5, 'Must be 5 digits')
             .max(5, 'Must be 5 digits')
             .required('Required'),
@@ -46,7 +48,7 @@ const BillingForm = () => {
             }
         }
         const { data, error } = await createBillingAddress(payload)
-        debugger;
+
         if (data.status === 200) {
             setSuccess(true)
             setTimeout(() => {
