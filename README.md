@@ -28,6 +28,8 @@
 I timeboxed this to stick to 4 hours or less - I went over a little bit but then stopped where I was to send you what I had so far. Here is what I would do:
 
     - BillingAddresses Component: it is fetching the data we need to display. The component itself needs to be completed. React Router to link to the separate view. 
+    - More states to the dropdown - I added just a few for the MVP
+    - More specific validations for zip and phone number
     - Tests! Formik allows for all of the form validations we need for the purposes of this app
     - Styled components instead of .css files
     - Prettier form!
