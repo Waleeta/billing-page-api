@@ -22,6 +22,8 @@ const BillingForm = () => {
         city: Yup.string()
             .required('Required'),
         zip: Yup.number()
+            .min(5, 'Must be 5 digits')
+            .max(5, 'Must be 5 digits')
             .required('Required'),
         phone: Yup.string()
             .required('Required')
@@ -76,8 +78,8 @@ const BillingForm = () => {
                         ) : null}
                         <label>Last Name</label>
                         <Field name="lastName" type="text" />
-                        {errors.lasttName && touched.lasttName ? (
-                            <div className="errorField">{errors.lasttName}</div>
+                        {errors.lastName && touched.lastName ? (
+                            <div className="errorField">{errors.lastName}</div>
                         ) : null}
                         <label>Street Address</label>
                         <Field name="street" type="text" />

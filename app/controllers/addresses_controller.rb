@@ -1,14 +1,14 @@
 class AddressesController < ApplicationController
   def index
-    addresses = Address.all.order("created_at DESC")
+    @addresses = Address.all.order("created_at DESC")
     
-    render json: addresses
+    render json: @addresses
   end
 
   def create
-    address = Address.create(address_params)
+    @address = Address.create(address_params)
 
-    render json: address
+    render json: @address
   end
 
   private 

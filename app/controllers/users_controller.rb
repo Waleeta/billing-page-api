@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(users_params)
+    @user = User.create(users_params)
 
-    if user.valid?  
+    if @user.valid?  
       render json: {}, status: 200
     else
       render json: { error: "Sorry, something went wrong" }, status: 422
