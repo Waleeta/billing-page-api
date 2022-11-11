@@ -14,10 +14,10 @@
     - Built the bones of the back end, then the front end
     - Built out the form on the front end using <form> && <input> fields to quickly test the create api
     - Updated the form to Formik, which is an indispensable library for forms in react - it handles validations and error messaging easily, otherwise I would have :
-    - Used setState to set the attributes from the text inputs (eg, setFirstName, setCity, etc)
-    - In the handleSubmit, done the validation check (eg, is the phone 10 digits, is anything blank, etc)
-    - Rendered an error message clarifying which field(s) had issues.
-    - Formik is a much quicker way to do all of this. 
+        - Used setState to set the attributes from the text inputs (eg, setFirstName, setCity, etc)
+        - In the handleSubmit, done the validation check (eg, is the phone 10 digits, is anything blank, etc)
+        - Rendered an error message clarifying which field(s) had issues.
+        - Formik is a much quicker way to do all of this. 
     - Once I could successfully create user/address, I worked on encrypting the data:
     - Looked into attr_encrypted, which is a ruby gem that allows encryption of attributes (e.g. in the user model, could say encrypts :first_name, last_name, etc). Decryption with this is also possible with its decrypt method and encryption key. However, I instead made the decision to upgrade rails and use the new attr_encrypted library that comes with it:
         - First, for time - a much faster way to encrypt data in Rails
