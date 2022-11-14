@@ -11,6 +11,7 @@
 
 * How I prioritized
     - Built the bones of the back end, then the front end
+    - I did not use versioning to create the controllers (e.g., namespace them as `Api::V1::UsersController`, instead I scoped the `api/v1` route, as this is the first version, and this acts only as an API.
     - Built out the form on the front end using <form> && <input> fields to quickly test the create api
     - Updated the form to Formik, which is an indispensable library for forms in react - it handles validations and error messaging easily, otherwise I would have :
         - Used setState to set the attributes from the text inputs (eg, setFirstName, setCity, etc)
