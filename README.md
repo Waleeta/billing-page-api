@@ -9,7 +9,6 @@
     - Go to localhost:5100 and see the billing page
     - Go to localhost:3000/api/v1/users && localhost:3000/api/v1/addresses to see the returned json, respectively
 
-
 * How I prioritized
     - Built the bones of the back end, then the front end
     - Built out the form on the front end using <form> && <input> fields to quickly test the create api
